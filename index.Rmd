@@ -223,14 +223,16 @@ plot(varImp(curl_mod3), main = "Importance Plot for Final Curl Model - Training"
 
 The model was run using K-fold cross-validation (k = 3). Somewhat surprisingly, drooping from 40 variables to 10 had little or no adverse affect on the model's accuracy. This model gives this level of accuracy: **`r curl_mod3_acy`%**.  
 
-```{r confmat, echo=FALSE, fig.width=5, fig.height=4}
+```{r confmat, echo=FALSE, fig.width=5, fig.height=3}
 
 cm_table <- curl_mod3_cm$table
+cm_text <- textGrob("Cross Validation Error Rate = 0")
 cm_tab <- tableGrob(cm_table, padding.h = unit(15, "mm"))
 
-grid.arrange(cm_tab, nrow=2,
-             main=textGrob("Confusion Matrix Results: Curl Model - Training Data Set"),
-            heights = c(1)) 
+grid.arrange(cm_tab, 
+             main=textGrob("Confusion Matrix Results: Curl Model - Training Data Set",
+            gp=gpar(cex=1), just="top"),
+             sub=cm_text)
 
 
 ```
